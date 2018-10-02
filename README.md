@@ -6,15 +6,15 @@
   1. [Einleitung](#einleitung)
   2. [Variablen](#variablen)
      * [Benutze aussagekräftige und sprechende Variablennamen](#benutze-aussagekräftige-und-sprechende-variablennamen)
-     * [Use the same vocabulary for the same type of variable](#use-the-same-vocabulary-for-the-same-type-of-variable)
-     * [Use searchable names (part 1)](#use-searchable-names-part-1)
-     * [Use searchable names (part 2)](#use-searchable-names-part-2)
-     * [Use explanatory variables](#use-explanatory-variables)
-     * [Avoid nesting too deeply and return early (part 1)](#avoid-nesting-too-deeply-and-return-early-part-1)
-     * [Avoid nesting too deeply and return early (part 2)](#avoid-nesting-too-deeply-and-return-early-part-2)
-     * [Avoid Mental Mapping](#avoid-mental-mapping)
-     * [Don't add unneeded context](#dont-add-unneeded-context)
-     * [Use default arguments instead of short circuiting or conditionals](#use-default-arguments-instead-of-short-circuiting-or-conditionals)
+     * [Benutze das selbe Vokabular für den selben Typ Variable](#benutze-das-selbe-vokabular-für-den-selben-typ-variable)
+     * [Benutze suchbare Namen (Teil 1)](#benutze-suchbare-namen-teil-1)
+     * [Benutze suchbare Namen (Teil 2)](#benutze-suchbare-namen-teil-2)
+     * [Benutze beschreibende Variablen](#benutze-beschreibende-variablen)
+     * [Vermeide zu tiefe Verschachtelungen und returne frühzeitig (Teil 1)](#vermeide-zu-tiefe-verschachtelungen-und-returne-frühzeitig-teil-1)
+     * [Vermeide zu tiefe Verschachtelungen und returne frühzeitig (Teil 2)](#vermeide-zu-tiefe-verschachtelungen-und-returne-frühzeitig-teil-2)
+     * [Vermeide gedankliche Zuordnung](#vermeide-gedankliche-zuordnung)
+     * [Füge keinen unnötigen Kontext hinzu](#füge-keinen-unnötigen-kontext-hinzu)
+     * [Benutze Standardargumente anstatt bedingten Auswertungen oder Abhängigkeiten](#benutze-standardargumente-anstatt-bedingten-auswertungen-oder-abhängigkeiten)
   3. [Comparison](#comparison)
      * [Use identical comparison](#use-identical-comparison)
   4. [Functions](#functions)
@@ -79,7 +79,7 @@ $currentDate = $moment->format('y-m-d');
 
 **[⬆ zurück nach oben](#inhaltsverzeichnis)**
 
-### Use the same vocabulary for the same type of variable
+### Benutze das selbe Vokabular für den selben Typ Variable
 
 **Schlecht:**
 
@@ -98,12 +98,11 @@ getUser();
 
 **[⬆ zurück nach oben](#inhaltsverzeichnis)**
 
-### Use searchable names (part 1)
+### Benutze suchbare Namen (Teil 1)
 
-We will read more code than we will ever write. It's important that the code we do write is 
-readable and searchable. By *not* naming variables that end up being meaningful for 
-understanding our program, we hurt our readers.
-Make your names searchable.
+Wir werden immer mehr Code lesen als schreiben. Es ist wichtig das der Code den wir schreiben lesbar und suchbar ist.
+Der Leser hat es schwer wenn wir unsere Variablen *nicht* so bennenen das sie das Verständniss des Programmes erleichtern. 
+Mache deine Namen suchbar.
 
 **Schlecht:**
 
@@ -118,7 +117,7 @@ $result = $serializer->serialize($data, 448);
 $json = $serializer->serialize($data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
 ```
 
-### Use searchable names (part 2)
+### Benutze suchbare Namen (Teil 2)
 
 **Schlecht:**
 
@@ -147,7 +146,7 @@ if ($user->access & User::ACCESS_UPDATE) {
 
 **[⬆ zurück nach oben](#inhaltsverzeichnis)**
 
-### Use explanatory variables
+### Benutze beschreibende Variablen
 
 **Schlecht:**
 
@@ -159,9 +158,9 @@ preg_match($cityZipCodeRegex, $address, $matches);
 saveCityZipCode($matches[1], $matches[2]);
 ```
 
-**Not bad:**
+**Nicht schlecht:**
 
-It's better, but we are still heavily dependent on regex.
+Besser, aber wir sind immer noch sehr abhängig davon den regex zu verstehen.
 
 ```php
 $address = 'One Infinite Loop, Cupertino 95014';
@@ -174,7 +173,7 @@ saveCityZipCode($city, $zipCode);
 
 **Gut:**
 
-Decrease dependence on regex by naming subpatterns.
+Verringere Abhängigkeit zu regex indem du Subpatterns benamst.
 
 ```php
 $address = 'One Infinite Loop, Cupertino 95014';
@@ -186,10 +185,9 @@ saveCityZipCode($matches['city'], $matches['zipCode']);
 
 **[⬆ zurück nach oben](#inhaltsverzeichnis)**
 
-### Avoid nesting too deeply and return early (part 1)
+### Vermeide zu tiefe Verschachtelungen und returne frühzeitig (Teil 1)
 
-Too many if-else statements can make your code hard to follow. Explicit is better
-than implicit.
+Zu viele if-else Statements sorgen dafür das es schwer wird deinen Code zu verstehen. Explizit ist besser als Implizit.
 
 **Schlecht:**
 
@@ -236,7 +234,7 @@ function isShopOpen(string $day): bool
 
 **[⬆ zurück nach oben](#inhaltsverzeichnis)**
 
-### Avoid nesting too deeply and return early (part 2)
+### Vermeide zu tiefe Verschachtelungen und returne frühzeitig (Teil 2)
 
 **Schlecht:**
 
@@ -278,10 +276,9 @@ function fibonacci(int $n): int
 
 **[⬆ zurück nach oben](#inhaltsverzeichnis)**
 
-### Avoid Mental Mapping
+### Vermeide gedankliche Zuordnung
 
-Don’t force the reader of your code to translate what the variable means.
-Explicit is better than implicit.
+Zwinge den Leser deines Codes nicht dazu Variablen zu Übersetzen um Sie zu verstehen. Explizit ist besser als Implizit.
 
 **Schlecht:**
 
@@ -317,10 +314,9 @@ foreach ($locations as $location) {
 
 **[⬆ zurück nach oben](#inhaltsverzeichnis)**
 
-### Don't add unneeded context
+### Füge keinen unnötigen Kontext hinzu
 
-If your class/object name tells you something, don't repeat that in your
-variable name.
+Wenn dein Klassen oder Objekt Name etwas aussagt, wiederhole es nicht im Variablennamen.
 
 **Schlecht:**
 
@@ -350,11 +346,11 @@ class Car
 
 **[⬆ zurück nach oben](#inhaltsverzeichnis)**
 
-### Use default arguments instead of short circuiting or conditionals
+### Benutze Standardargumente anstatt bedingten Auswertungen oder Abhängigkeiten
 
-**Not good:**
+**Nicht gut:**
 
-This is not good because `$breweryName` can be `NULL`.
+Das hier ist nicht gut denn `$breweryName` könnte `NULL` sein.
 
 ```php
 function createMicrobrewery($breweryName = 'Hipster Brew Co.'): void
@@ -363,9 +359,9 @@ function createMicrobrewery($breweryName = 'Hipster Brew Co.'): void
 }
 ```
 
-**Not bad:**
+**Nicht schlecht:**
 
-This opinion is more understandable than the previous version, but it better controls the value of the variable.
+Folgendes ist Verständlicher als die vorherige Variante, ausserdem wird der Inhalt der Variable besser Kontrolliert.
 
 ```php
 function createMicrobrewery($name = null): void
@@ -377,7 +373,7 @@ function createMicrobrewery($name = null): void
 
 **Gut:**
 
- You can use [type hinting](http://php.net/manual/en/functions.arguments.php#functions.arguments.type-declaration) and be sure that the `$breweryName` will not be `NULL`.
+ Du kannst [type hinting](http://php.net/manual/en/functions.arguments.php#functions.arguments.type-declaration) nutzen und sicherstellen das `$breweryName` nicht `NULL` sein wird.
 
 ```php
 function createMicrobrewery(string $breweryName = 'Hipster Brew Co.'): void
@@ -394,7 +390,7 @@ function createMicrobrewery(string $breweryName = 'Hipster Brew Co.'): void
 
 **Not good:**
 
-The simple comparison will convert the string in an integer.
+Der einfache Vergleich wird den string in einen integer wandeln.
 
 ```php
 $a = '42';
@@ -405,12 +401,12 @@ if ($a != $b) {
 }
 ```
 
-The comparison `$a != $b` returns `FALSE` but in fact it's `TRUE`!
-The string `42` is different than the integer `42`.
+Der Vergleich von `$a != $b` returned `FALSE` aber in Wahrheit ist es `TRUE`!
+Der string `42` ist anders als der integer `42`.
 
 **Gut:**
 
-The identical comparison will compare type and value.
+Der identische Vergleich prüft Typ und Inhalt.
 
 ```php
 $a = '42';
@@ -421,7 +417,7 @@ if ($a !== $b) {
 }
 ```
 
-The comparison `$a !== $b` returns `TRUE`.
+Der Vergleich `$a !== $b` returned `TRUE`.
 
 **[⬆ zurück nach oben](#inhaltsverzeichnis)**
 
