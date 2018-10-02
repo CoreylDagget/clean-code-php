@@ -5,7 +5,7 @@
 
   1. [Einleitung](#einleitung)
   2. [Variablen](#variablen)
-     * [Benutze aussagekräftige und sprechende Variablennamen](#Benutze-aussagekräftige-und-sprechende-Variablennamen)
+     * [Benutze aussagekräftige und sprechende Variablennamen](#benutze-aussagekräftige-und-sprechende-variablennamen)
      * [Use the same vocabulary for the same type of variable](#use-the-same-vocabulary-for-the-same-type-of-variable)
      * [Use searchable names (part 1)](#use-searchable-names-part-1)
      * [Use searchable names (part 2)](#use-searchable-names-part-2)
