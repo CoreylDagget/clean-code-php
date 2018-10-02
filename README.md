@@ -1,10 +1,11 @@
 ﻿# Clean Code PHP
 
-## Table of Contents
+Übersetzung ins deutsche des [Clean Code PHP](https://github.com/jupeter/clean-code-php) Repository von [Jupeter](https://github.com/jupeter/). Wenn Ihr Rechtschreibfehler, Übersetzungsfehler oder ähnliches findet, scheut euch nicht einen PULL Request zu stellen! 
+## Inhaltsverzeichnis
 
-  1. [Introduction](#introduction)
-  2. [Variables](#variables)
-     * [Use meaningful and pronounceable variable names](#use-meaningful-and-pronounceable-variable-names)
+  1. [Einleitung](#einleitung)
+  2. [Variablen](#variablen)
+     * [Benutze aussagekräftige und sprechende Variablennamen](#Benutze-aussagekräftige-und-sprechende-Variablennamen)
      * [Use the same vocabulary for the same type of variable](#use-the-same-vocabulary-for-the-same-type-of-variable)
      * [Use searchable names (part 1)](#use-searchable-names-part-1)
      * [Use searchable names (part 2)](#use-searchable-names-part-2)
@@ -47,42 +48,40 @@
   8. [Don’t repeat yourself (DRY)](#dont-repeat-yourself-dry)
   9. [Translations](#translations)
 
-## Introduction
+## Einleitung
 
-Software engineering principles, from Robert C. Martin's book
+Prinzipien der Softwareentwicklung, aus Robert C. Martin's Buch
 [*Clean Code*](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882),
-adapted for PHP. This is not a style guide. It's a guide to producing
-readable, reusable, and refactorable software in PHP.
+adaptiert für PHP. Dies ist kein Styleguide. Es ist eine Anleitung lesbaren, wiederverwendbaren und refakturierbaren code in PHP zu schreiben
 
-Not every principle herein has to be strictly followed, and even fewer will be universally 
-agreed upon. These are guidelines and nothing more, but they are ones codified over many 
-years of collective experience by the authors of *Clean Code*.
+Nicht jedes der hier vorgestellten Prinzipien muss strikt befolgt werden und noch weniger werden wir uns bei allen stets einig sein.
+Es handelt sich hierbei um Handlungsempfehlungen (Guidelines) und nicht mehr, allerdings sind diese seit Jahren erfolgreich im Einsatz und wurden über viele Jahre von den Autoren von *Clean Code* zusammengetragen.
 
-Inspired from [clean-code-javascript](https://github.com/ryanmcdermott/clean-code-javascript).
+Inspiriert von [clean-code-javascript](https://github.com/ryanmcdermott/clean-code-javascript).
 
-Although many developers still use PHP 5, most of the examples in this article only work with PHP 7.1+.
+Auch wenn viele Entwickler noch mit PHP 5 Arbeiten, funktionieren die meisten hier gezeigten Beispiele nur mit PHP 7.1+.
 
-## Variables
+## Variablen
 
-### Use meaningful and pronounceable variable names
+### Benutze aussagekräftige und sprechende Variablennamen
 
-**Bad:**
+**Schlecht:**
 
 ```php
 $ymdstr = $moment->format('y-m-d');
 ```
 
-**Good:**
+**Gut:**
 
 ```php
 $currentDate = $moment->format('y-m-d');
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ zurück nach oben](#inhaltsverzeichnis)**
 
 ### Use the same vocabulary for the same type of variable
 
-**Bad:**
+**Schlecht:**
 
 ```php
 getUserInfo();
@@ -91,13 +90,13 @@ getUserRecord();
 getUserProfile();
 ```
 
-**Good:**
+**Gut:**
 
 ```php
 getUser();
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ zurück nach oben](#inhaltsverzeichnis)**
 
 ### Use searchable names (part 1)
 
@@ -106,14 +105,14 @@ readable and searchable. By *not* naming variables that end up being meaningful 
 understanding our program, we hurt our readers.
 Make your names searchable.
 
-**Bad:**
+**Schlecht:**
 
 ```php
 // What the heck is 448 for?
 $result = $serializer->serialize($data, 448);
 ```
 
-**Good:**
+**Gut:**
 
 ```php
 $json = $serializer->serialize($data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
@@ -121,7 +120,7 @@ $json = $serializer->serialize($data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT
 
 ### Use searchable names (part 2)
 
-**Bad:**
+**Schlecht:**
 
 ```php
 // What the heck is 4 for?
@@ -130,7 +129,7 @@ if ($user->access & 4) {
 }
 ```
 
-**Good:**
+**Gut:**
 
 ```php
 class User
@@ -146,11 +145,11 @@ if ($user->access & User::ACCESS_UPDATE) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ zurück nach oben](#inhaltsverzeichnis)**
 
 ### Use explanatory variables
 
-**Bad:**
+**Schlecht:**
 
 ```php
 $address = 'One Infinite Loop, Cupertino 95014';
@@ -173,7 +172,7 @@ preg_match($cityZipCodeRegex, $address, $matches);
 saveCityZipCode($city, $zipCode);
 ```
 
-**Good:**
+**Gut:**
 
 Decrease dependence on regex by naming subpatterns.
 
@@ -185,14 +184,14 @@ preg_match($cityZipCodeRegex, $address, $matches);
 saveCityZipCode($matches['city'], $matches['zipCode']);
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ zurück nach oben](#inhaltsverzeichnis)**
 
 ### Avoid nesting too deeply and return early (part 1)
 
 Too many if-else statements can make your code hard to follow. Explicit is better
 than implicit.
 
-**Bad:**
+**Schlecht:**
 
 ```php
 function isShopOpen($day): bool
@@ -218,7 +217,7 @@ function isShopOpen($day): bool
 }
 ```
 
-**Good:**
+**Gut:**
 
 ```php
 function isShopOpen(string $day): bool
@@ -235,11 +234,11 @@ function isShopOpen(string $day): bool
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ zurück nach oben](#inhaltsverzeichnis)**
 
 ### Avoid nesting too deeply and return early (part 2)
 
-**Bad:**
+**Schlecht:**
 
 ```php
 function fibonacci(int $n)
@@ -260,7 +259,7 @@ function fibonacci(int $n)
 }
 ```
 
-**Good:**
+**Gut:**
 
 ```php
 function fibonacci(int $n): int
@@ -277,14 +276,14 @@ function fibonacci(int $n): int
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ zurück nach oben](#inhaltsverzeichnis)**
 
 ### Avoid Mental Mapping
 
 Don’t force the reader of your code to translate what the variable means.
 Explicit is better than implicit.
 
-**Bad:**
+**Schlecht:**
 
 ```php
 $l = ['Austin', 'New York', 'San Francisco'];
@@ -301,7 +300,7 @@ for ($i = 0; $i < count($l); $i++) {
 }
 ```
 
-**Good:**
+**Gut:**
 
 ```php
 $locations = ['Austin', 'New York', 'San Francisco'];
@@ -316,14 +315,14 @@ foreach ($locations as $location) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ zurück nach oben](#inhaltsverzeichnis)**
 
 ### Don't add unneeded context
 
 If your class/object name tells you something, don't repeat that in your
 variable name.
 
-**Bad:**
+**Schlecht:**
 
 ```php
 class Car
@@ -336,7 +335,7 @@ class Car
 }
 ```
 
-**Good:**
+**Gut:**
 
 ```php
 class Car
@@ -349,7 +348,7 @@ class Car
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ zurück nach oben](#inhaltsverzeichnis)**
 
 ### Use default arguments instead of short circuiting or conditionals
 
@@ -376,7 +375,7 @@ function createMicrobrewery($name = null): void
 }
 ```
 
-**Good:**
+**Gut:**
 
  You can use [type hinting](http://php.net/manual/en/functions.arguments.php#functions.arguments.type-declaration) and be sure that the `$breweryName` will not be `NULL`.
 
@@ -387,7 +386,7 @@ function createMicrobrewery(string $breweryName = 'Hipster Brew Co.'): void
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ zurück nach oben](#inhaltsverzeichnis)**
 
 ## Comparison
 
@@ -409,7 +408,7 @@ if ($a != $b) {
 The comparison `$a != $b` returns `FALSE` but in fact it's `TRUE`!
 The string `42` is different than the integer `42`.
 
-**Good:**
+**Gut:**
 
 The identical comparison will compare type and value.
 
@@ -424,7 +423,7 @@ if ($a !== $b) {
 
 The comparison `$a !== $b` returns `TRUE`.
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ zurück nach oben](#inhaltsverzeichnis)**
 
 
 ## Functions
@@ -440,7 +439,7 @@ Anything more than that should be consolidated. Usually, if you have more than t
 arguments then your function is trying to do too much. In cases where it's not, most 
 of the time a higher-level object will suffice as an argument.
 
-**Bad:**
+**Schlecht:**
 
 ```php
 function createMenu(string $title, string $body, string $buttonText, bool $cancellable): void
@@ -449,7 +448,7 @@ function createMenu(string $title, string $body, string $buttonText, bool $cance
 }
 ```
 
-**Good:**
+**Gut:**
 
 ```php
 class MenuConfig
@@ -472,7 +471,7 @@ function createMenu(MenuConfig $config): void
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ zurück nach oben](#inhaltsverzeichnis)**
 
 ### Functions should do one thing
 
@@ -482,7 +481,7 @@ a function to just one action, they can be refactored easily and your code will 
 cleaner. If you take nothing else away from this guide other than this, you'll be ahead 
 of many developers.
 
-**Bad:**
+**Schlecht:**
 ```php
 function emailClients(array $clients): void
 {
@@ -495,7 +494,7 @@ function emailClients(array $clients): void
 }
 ```
 
-**Good:**
+**Gut:**
 
 ```php
 function emailClients(array $clients): void
@@ -517,11 +516,11 @@ function isClientActive(int $client): bool
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ zurück nach oben](#inhaltsverzeichnis)**
 
 ### Function names should say what they do
 
-**Bad:**
+**Schlecht:**
 
 ```php
 class Email
@@ -539,7 +538,7 @@ $message = new Email(...);
 $message->handle();
 ```
 
-**Good:**
+**Gut:**
 
 ```php
 class Email 
@@ -557,7 +556,7 @@ $message = new Email(...);
 $message->send();
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ zurück nach oben](#inhaltsverzeichnis)**
 
 ### Functions should only be one level of abstraction
 
@@ -565,7 +564,7 @@ When you have more than one level of abstraction your function is usually
 doing too much. Splitting up functions leads to reusability and easier
 testing.
 
-**Bad:**
+**Schlecht:**
 
 ```php
 function parseBetterJSAlternative(string $code): void
@@ -635,7 +634,7 @@ function parseBetterJSAlternative(string $code): void
 }
 ```
 
-**Good:**
+**Gut:**
 
 The best solution is move out the dependencies of `parseBetterJSAlternative()` function.
 
@@ -695,7 +694,7 @@ class BetterJSAlternative
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ zurück nach oben](#inhaltsverzeichnis)**
 
 ### Don't use flags as function parameters
 
@@ -703,7 +702,7 @@ Flags tell your user that this function does more than one thing. Functions shou
 do one thing. Split out your functions if they are following different code paths 
 based on a boolean.
 
-**Bad:**
+**Schlecht:**
 
 ```php
 function createFile(string $name, bool $temp = false): void
@@ -716,7 +715,7 @@ function createFile(string $name, bool $temp = false): void
 }
 ```
 
-**Good:**
+**Gut:**
 
 ```php
 function createFile(string $name): void
@@ -730,7 +729,7 @@ function createTempFile(string $name): void
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ zurück nach oben](#inhaltsverzeichnis)**
 
 ### Avoid Side Effects
 
@@ -748,7 +747,7 @@ any structure, using mutable data types that can be written to by anything, and 
 centralizing where your side effects occur. If you can do this, you will be happier 
 than the vast majority of other programmers.
 
-**Bad:**
+**Schlecht:**
 
 ```php
 // Global variable referenced by following function.
@@ -767,7 +766,7 @@ splitIntoFirstAndLastName();
 var_dump($name); // ['Ryan', 'McDermott'];
 ```
 
-**Good:**
+**Gut:**
 
 ```php
 function splitIntoFirstAndLastName(string $name): array
@@ -782,7 +781,7 @@ var_dump($name); // 'Ryan McDermott';
 var_dump($newName); // ['Ryan', 'McDermott'];
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ zurück nach oben](#inhaltsverzeichnis)**
 
 ### Don't write to global functions
 
@@ -792,7 +791,7 @@ production. Let's think about an example: what if you wanted to have configurati
 You could write global function like `config()`, but it could clash with another library 
 that tried to do the same thing.
 
-**Bad:**
+**Schlecht:**
 
 ```php
 function config(): array
@@ -803,7 +802,7 @@ function config(): array
 }
 ```
 
-**Good:**
+**Gut:**
 
 ```php
 class Configuration
@@ -832,7 +831,7 @@ $configuration = new Configuration([
 
 And now you must use instance of `Configuration` in your application.
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ zurück nach oben](#inhaltsverzeichnis)**
 
 ### Don't use a Singleton pattern
 
@@ -844,7 +843,7 @@ Singleton is an [anti-pattern](https://en.wikipedia.org/wiki/Singleton_pattern).
 
 There is also very good thoughts by [Misko Hevery](http://misko.hevery.com/about/) about the [root of problem](http://misko.hevery.com/2008/08/25/root-cause-of-singletons/).
 
-**Bad:**
+**Schlecht:**
 
 ```php
 class DBConnection
@@ -871,7 +870,7 @@ class DBConnection
 $singleton = DBConnection::getInstance();
 ```
 
-**Good:**
+**Gut:**
 
 ```php
 class DBConnection
@@ -893,11 +892,11 @@ $connection = new DBConnection($dsn);
 
 And now you must use instance of `DBConnection` in your application.
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ zurück nach oben](#inhaltsverzeichnis)**
 
 ### Encapsulate conditionals
 
-**Bad:**
+**Schlecht:**
 
 ```php
 if ($article->state === 'published') {
@@ -905,7 +904,7 @@ if ($article->state === 'published') {
 }
 ```
 
-**Good:**
+**Gut:**
 
 ```php
 if ($article->isPublished()) {
@@ -913,11 +912,11 @@ if ($article->isPublished()) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ zurück nach oben](#inhaltsverzeichnis)**
 
 ### Avoid negative conditionals
 
-**Bad:**
+**Schlecht:**
 
 ```php
 function isDOMNodeNotPresent(\DOMNode $node): bool
@@ -931,7 +930,7 @@ if (!isDOMNodeNotPresent($node))
 }
 ```
 
-**Good:**
+**Gut:**
 
 ```php
 function isDOMNodePresent(\DOMNode $node): bool
@@ -944,7 +943,7 @@ if (isDOMNodePresent($node)) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ zurück nach oben](#inhaltsverzeichnis)**
 
 ### Avoid conditionals
 
@@ -957,7 +956,7 @@ one thing. When you have classes and functions that have `if` statements, you
 are telling your user that your function does more than one thing. Remember,
 just do one thing.
 
-**Bad:**
+**Schlecht:**
 
 ```php
 class Airplane
@@ -978,7 +977,7 @@ class Airplane
 }
 ```
 
-**Good:**
+**Gut:**
 
 ```php
 interface Airplane
@@ -1019,7 +1018,7 @@ class Cessna implements Airplane
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ zurück nach oben](#inhaltsverzeichnis)**
 
 ### Avoid type-checking (part 1)
 
@@ -1028,7 +1027,7 @@ Sometimes you are bitten by this freedom and it becomes tempting to do
 type-checking in your functions. There are many ways to avoid having to do this.
 The first thing to consider is consistent APIs.
 
-**Bad:**
+**Schlecht:**
 
 ```php
 function travelToTexas($vehicle): void
@@ -1041,7 +1040,7 @@ function travelToTexas($vehicle): void
 }
 ```
 
-**Good:**
+**Gut:**
 
 ```php
 function travelToTexas(Traveler $vehicle): void
@@ -1050,7 +1049,7 @@ function travelToTexas(Traveler $vehicle): void
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ zurück nach oben](#inhaltsverzeichnis)**
 
 ### Avoid type-checking (part 2)
 
@@ -1064,7 +1063,7 @@ extra verbiage that the faux "type-safety" you get doesn't make up for the lost
 readability. Keep your PHP clean, write good tests, and have good code reviews.
 Otherwise, do all of that but with PHP strict type declaration or strict mode.
 
-**Bad:**
+**Schlecht:**
 
 ```php
 function combine($val1, $val2): int
@@ -1077,7 +1076,7 @@ function combine($val1, $val2): int
 }
 ```
 
-**Good:**
+**Gut:**
 
 ```php
 function combine(int $val1, int $val2): int
@@ -1086,7 +1085,7 @@ function combine(int $val1, int $val2): int
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ zurück nach oben](#inhaltsverzeichnis)**
 
 ### Remove dead code
 
@@ -1094,7 +1093,7 @@ Dead code is just as bad as duplicate code. There's no reason to keep it in
 your codebase. If it's not being called, get rid of it! It will still be safe
 in your version history if you still need it.
 
-**Bad:**
+**Schlecht:**
 
 ```php
 function oldRequestModule(string $url): void
@@ -1111,7 +1110,7 @@ $request = newRequestModule($requestUrl);
 inventoryTracker('apples', $request, 'www.inventory-awesome.io');
 ```
 
-**Good:**
+**Gut:**
 
 ```php
 function requestModule(string $url): void
@@ -1123,7 +1122,7 @@ $request = requestModule($requestUrl);
 inventoryTracker('apples', $request, 'www.inventory-awesome.io');
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ zurück nach oben](#inhaltsverzeichnis)**
 
 
 ## Objects and Data Structures
@@ -1144,7 +1143,7 @@ server.
 
 Additionally, this is part of [Open/Closed](#openclosed-principle-ocp) principle.
 
-**Bad:**
+**Schlecht:**
 
 ```php
 class BankAccount
@@ -1158,7 +1157,7 @@ $bankAccount = new BankAccount();
 $bankAccount->balance -= 100;
 ```
 
-**Good:**
+**Gut:**
 
 ```php
 class BankAccount
@@ -1199,7 +1198,7 @@ $bankAccount->withdraw($shoesPrice);
 $balance = $bankAccount->getBalance();
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ zurück nach oben](#inhaltsverzeichnis)**
 
 ### Make objects have private/protected members
 
@@ -1211,7 +1210,7 @@ Therefore, use `private` by default and `public/protected` when you need to prov
 
 For more informations you can read the [blog post](http://fabien.potencier.org/pragmatism-over-theory-protected-vs-private.html) on this topic written by [Fabien Potencier](https://github.com/fabpot).
 
-**Bad:**
+**Schlecht:**
 
 ```php
 class Employee
@@ -1228,7 +1227,7 @@ $employee = new Employee('John Doe');
 echo 'Employee name: '.$employee->name; // Employee name: John Doe
 ```
 
-**Good:**
+**Gut:**
 
 ```php
 class Employee
@@ -1250,7 +1249,7 @@ $employee = new Employee('John Doe');
 echo 'Employee name: '.$employee->getName(); // Employee name: John Doe
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ zurück nach oben](#inhaltsverzeichnis)**
 
 ## Classes
 
@@ -1273,7 +1272,7 @@ relationship (Human->Animal vs. User->UserDetails).
 3. You want to make global changes to derived classes by changing a base class.
 (Change the caloric expenditure of all animals when they move).
 
-**Bad:**
+**Schlecht:**
 
 ```php
 class Employee 
@@ -1310,7 +1309,7 @@ class EmployeeTaxData extends Employee
 }
 ```
 
-**Good:**
+**Gut:**
 
 ```php
 class EmployeeTaxData 
@@ -1348,7 +1347,7 @@ class Employee
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ zurück nach oben](#inhaltsverzeichnis)**
 
 ### Avoid fluent interfaces
 
@@ -1369,7 +1368,7 @@ more often it comes at some costs:
 For more informations you can read the full [blog post](https://ocramius.github.io/blog/fluent-interfaces-are-evil/)
 on this topic written by [Marco Pivetta](https://github.com/Ocramius).
 
-**Bad:**
+**Schlecht:**
 
 ```php
 class Car
@@ -1415,7 +1414,7 @@ $car = (new Car())
   ->dump();
 ```
 
-**Good:**
+**Gut:**
 
 ```php
 class Car
@@ -1452,7 +1451,7 @@ $car->setModel('F-150');
 $car->dump();
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ zurück nach oben](#inhaltsverzeichnis)**
 
 ### Prefer final classes
 
@@ -1468,7 +1467,7 @@ The only condition is that your class should implement an interface and no other
 
 For more informations you can read [the blog post](https://ocramius.github.io/blog/when-to-declare-classes-final/) on this topic written by [Marco Pivetta (Ocramius)](https://ocramius.github.io/).
 
-**Bad:**
+**Schlecht:**
 
 ```php
 final class Car
@@ -1490,7 +1489,7 @@ final class Car
 }
 ```
 
-**Good:**
+**Gut:**
 
 ```php
 interface Vehicle
@@ -1520,7 +1519,7 @@ final class Car implements Vehicle
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ zurück nach oben](#inhaltsverzeichnis)**
 
 ## SOLID
 
@@ -1543,7 +1542,7 @@ It's important because if too much functionality is in one class and you modify 
 it can be difficult to understand how that will affect other dependent modules in
 your codebase.
 
-**Bad:**
+**Schlecht:**
 
 ```php
 class UserSettings
@@ -1569,7 +1568,7 @@ class UserSettings
 }
 ```
 
-**Good:**
+**Gut:**
 
 ```php
 class UserAuth 
@@ -1607,7 +1606,7 @@ class UserSettings
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ zurück nach oben](#inhaltsverzeichnis)**
 
 ### Open/Closed Principle (OCP)
 
@@ -1616,7 +1615,7 @@ etc.) should be open for extension, but closed for modification." What does that
 mean though? This principle basically states that you should allow users to
 add new functionalities without changing existing code.
 
-**Bad:**
+**Schlecht:**
 
 ```php
 abstract class Adapter
@@ -1681,7 +1680,7 @@ class HttpRequester
 }
 ```
 
-**Good:**
+**Gut:**
 
 ```php
 interface Adapter
@@ -1721,7 +1720,7 @@ class HttpRequester
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ zurück nach oben](#inhaltsverzeichnis)**
 
 ### Liskov Substitution Principle (LSP)
 
@@ -1738,7 +1737,7 @@ classic Square-Rectangle example. Mathematically, a square is a rectangle, but
 if you model it using the "is-a" relationship via inheritance, you quickly
 get into trouble.
 
-**Bad:**
+**Schlecht:**
 
 ```php
 class Rectangle
@@ -1791,7 +1790,7 @@ foreach ($rectangles as $rectangle) {
 }
 ```
 
-**Good:**
+**Gut:**
 
 The best way is separate the quadrangles and allocation of a more general subtype for both shapes.
 
@@ -1849,7 +1848,7 @@ foreach ($shapes as $shape) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ zurück nach oben](#inhaltsverzeichnis)**
 
 ### Interface Segregation Principle (ISP)
 
@@ -1861,7 +1860,7 @@ classes that require large settings objects. Not requiring clients to set up
 huge amounts of options is beneficial, because most of the time they won't need
 all of the settings. Making them optional helps prevent having a "fat interface".
 
-**Bad:**
+**Schlecht:**
 
 ```php
 interface Employee
@@ -1898,7 +1897,7 @@ class RobotEmployee implements Employee
 }
 ```
 
-**Good:**
+**Gut:**
 
 Not every worker is an employee, but every employee is a worker.
 
@@ -1940,7 +1939,7 @@ class RobotEmployee implements Workable
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ zurück nach oben](#inhaltsverzeichnis)**
 
 ### Dependency Inversion Principle (DIP)
 
@@ -1957,7 +1956,7 @@ It can accomplish this through DI. A huge benefit of this is that it reduces
 the coupling between modules. Coupling is a very bad development pattern because
 it makes your code hard to refactor.
 
-**Bad:**
+**Schlecht:**
 
 ```php
 class Employee
@@ -1992,7 +1991,7 @@ class Manager
 }
 ```
 
-**Good:**
+**Gut:**
 
 ```php
 interface Employee
@@ -2032,7 +2031,7 @@ class Manager
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ zurück nach oben](#inhaltsverzeichnis)**
 
 ## Don’t repeat yourself (DRY)
 
@@ -2059,7 +2058,7 @@ worse than duplicate code, so be careful! Having said this, if you can make
 a good abstraction, do it! Don't repeat yourself, otherwise you'll find yourself 
 updating multiple places any time you want to change one thing.
 
-**Bad:**
+**Schlecht:**
 
 ```php
 function showDeveloperList(array $developers): void
@@ -2095,7 +2094,7 @@ function showManagerList(array $managers): void
 }
 ```
 
-**Good:**
+**Gut:**
 
 ```php
 function showList(array $employees): void
@@ -2132,7 +2131,7 @@ function showList(array $employees): void
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ zurück nach oben](#inhaltsverzeichnis)**
 
 ## Translations
 
@@ -2158,4 +2157,4 @@ This is also available in other languages:
 * :tr: **Turkish:**
    * [anilozmen/clean-code-php](https://github.com/anilozmen/clean-code-php)
    
-**[⬆ back to top](#table-of-contents)**
+**[⬆ zurück nach oben](#inhaltsverzeichnis)**
